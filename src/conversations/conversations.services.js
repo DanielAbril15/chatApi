@@ -13,8 +13,8 @@ const getAllConversations = (req, res) => {
 };
 const createConversations = (req, res) => {
   const createdBy = req.user.id;
-  const { title, phone } = req.body;
-  if ((title, phone)) {
+  const { title } = req.body;
+  if (title) {
     conversationsControllers
       .createConversations({ title, createdBy })
       .then((data) => {
@@ -28,7 +28,6 @@ const createConversations = (req, res) => {
       message: "Missing data",
       fields: {
         title: "string",
-        phone: "string",
       },
     });
   }
