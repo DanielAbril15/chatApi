@@ -1,4 +1,5 @@
 const conversationsControllers = require("./conversations.controllers");
+const participantsControllers = require("../participants/participants.controllers");
 
 const getAllConversations = (req, res) => {
   conversationsControllers
@@ -12,8 +13,8 @@ const getAllConversations = (req, res) => {
 };
 const createConversations = (req, res) => {
   const createdBy = req.user.id;
-  const { title } = req.body;
-  if (title) {
+  const { title, phone } = req.body;
+  if ((title, phone)) {
     conversationsControllers
       .createConversations({ title, createdBy })
       .then((data) => {
@@ -27,6 +28,7 @@ const createConversations = (req, res) => {
       message: "Missing data",
       fields: {
         title: "string",
+        phone: "string",
       },
     });
   }

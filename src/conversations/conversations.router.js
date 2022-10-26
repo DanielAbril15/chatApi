@@ -20,6 +20,6 @@ router
   .delete(passport.authenticate("jwt", { session: false }), deleteConversation)
   .patch(passport.authenticate("jwt", { session: false }), patchConversation);
 
-router.route(`/id/${messageRouter}`);
+router.route(`/:id/${messageRouter}`);
 
 module.exports = router;

@@ -14,7 +14,7 @@ const getAllMessages = (req, res) => {
 const createMessage = (req, res) => {
   const senderId = req.user.id;
   const { message, conversationId } = req.body;
-  if (message) {
+  if ((message, conversationId)) {
     messagesControllers
       .createMessage({
         senderId,
