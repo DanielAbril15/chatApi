@@ -23,44 +23,28 @@ const Users = db.define("users", {
     allowNull: false,
     unique: true,
     validate: {
-        isEmail: true
-    }
+      isEmail: true,
+    },
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   phone: {
-    type: DataTypes.STRING, // +52 
-    allowNull: false,
-    unique: true
-  },
-  birthday: {
-    type: DataTypes.DATEONLY,
-    allowNull: false,
-  },
-  gender: {
     type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
   },
   role: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: 'normal'
-  },
-  country: {
-    type: DataTypes.STRING,
+    defaultValue: "normal",
   },
   status: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: 'active'
-  },
-  isVerified: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    field: 'is_verified',
-    defaultValue: false
+    defaultValue: "active",
   },
 });
 
-module.exports = Users
+module.exports = Users;

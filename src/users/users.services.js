@@ -24,19 +24,9 @@ const getUserById = (req, res) => {
 };
 
 const registerUser = (req, res) => {
-  const {
-    firstName,
-    lastName,
-    email,
-    password,
-    phone,
-    birthday,
-    gender,
-    country,
-  } = req.body;
+  const { firstName, lastName, email, password, phone } = req.body;
 
-  if (firstName && lastName && email && password && phone && birthday) {
-    // Ejecutamos el controller
+  if (firstName && lastName && email && password && phone) {
     usersControllers
       .createUser({
         firstName,
@@ -44,9 +34,6 @@ const registerUser = (req, res) => {
         email,
         password,
         phone,
-        birthday,
-        gender,
-        country,
       })
       .then((data) => {
         res.status(201).json(data);
@@ -55,7 +42,6 @@ const registerUser = (req, res) => {
         res.status(400).json(err.message);
       });
   } else {
-    // Error cuando no mandan todos los datos necesarios para crear un usuario
     res.status(400).json({
       message: "All fields must be completed",
       fields: {
@@ -64,7 +50,6 @@ const registerUser = (req, res) => {
         email: "example@example.com",
         password: "string",
         phone: "+521231231231",
-        birthday: "YYYY/MM/DD",
       },
     });
   }
@@ -72,10 +57,10 @@ const registerUser = (req, res) => {
 
 const patchUser = (req, res) => {
   const id = req.params.id;
-  const { firstName, lastName, phone, gender, country } = req.body;
+  const { firstName, lastName, phone } = req.body;
 
   usersControllers
-    .updateUser(id, { firstName, lastName, phone, gender, country })
+    .updateUser(id, { firstName, lastName, phone })
     .then((data) => {
       if (data[0]) {
         res
@@ -106,11 +91,8 @@ const deleteUser = (req, res) => {
     });
 };
 
-// My user services
-
 const getMyUser = (req, res) => {
-  const id = req.user.id; // req.user contiene la informacion del token desencriptado
-
+  const id = req.user.id;
   usersControllers
     .getUserById(id)
     .then((data) => {
@@ -121,14 +103,12 @@ const getMyUser = (req, res) => {
     });
 };
 
-// TODO crear rutas protegidas /me, con los verbos para update y delete
-
 const patchMyUser = (req, res) => {
   const id = req.user.id;
-  const { firstName, lastName, phone, birthday, gender, country } = req.body;
+  const { firstName, lastName, phone } = req.body;
 
   usersControllers
-    .updateUser(id, { firstName, lastName, phone, birthday, gender, country })
+    .updateUser(id, { firstName, lastName, phone })
     .then(() => {
       res.status(200).json({ message: `Your user was edited succesfully!` });
     })
@@ -136,10 +116,6 @@ const patchMyUser = (req, res) => {
       res.status(400).json({ message: err.message });
     });
 };
-
-//2 tipos de delete:
-//1. por administrador
-//2. por mi mismo
 
 const deleteMyUser = (req, res) => {
   const id = req.user.id;
