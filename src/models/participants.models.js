@@ -18,12 +18,12 @@ const Participants = db.define("participants", {
       model: Conversations,
     },
   },
-  userPhone: {
-    type: DataTypes.STRING,
+  userId: {
+    type: DataTypes.UUID,
     allowNull: false,
-    field: "user_phone",
+    field: "user_id",
     references: {
-      key: "phone",
+      key: "id",
       model: Users,
     },
   },

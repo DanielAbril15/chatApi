@@ -12,10 +12,10 @@ const Conversations = db.define("conversations", {
     type: DataTypes.STRING(30),
     allowNull: false,
   },
-  createdBy: {
+  userId: {
     type: DataTypes.UUID,
     allowNull: false,
-    field: "created_by",
+    field: "user_by",
     references: {
       key: "id",
       model: Users,
