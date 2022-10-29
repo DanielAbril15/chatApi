@@ -12,12 +12,12 @@ const getAllMessages = (req, res) => {
 };
 
 const createMessage = (req, res) => {
-  const senderId = req.user.id;
+  const userId = req.user.id;
   const { message, conversationId } = req.body;
   if ((message, conversationId)) {
     messagesControllers
       .createMessage({
-        senderId,
+        userId,
         conversationId,
         message,
       })

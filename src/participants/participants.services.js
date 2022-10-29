@@ -12,12 +12,13 @@ const getAllParticipants = (req, res) => {
 };
 
 const createParticipant = (req, res) => {
-  const { phone, conversationId } = req.body;
-  if ((phone, conversationId)) {
+  const userId = req.user.id;
+  const { conversationId } = req.body;
+  if (conversationId) {
     participantsControllers
       .createParticipant({
         conversationId,
-        phone,
+        userId,
       })
       .then((data) => res.status(201).json(data))
       .catch((err) => res.status(400).json({ message: err.message }));
@@ -25,7 +26,6 @@ const createParticipant = (req, res) => {
     res.status(400).json({
       message: "Missing Data",
       fiels: {
-        phone: "string",
         conversationId: "string",
       },
     });

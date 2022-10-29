@@ -9,7 +9,7 @@ const createParticipant = async (data) => {
   const newParticipant = await Participants.create({
     id: uuid.v4(),
     conversationId: data.conversationId,
-    userPhone: data.userPhone,
+    userId: data.userId,
   });
   return newParticipant;
 };

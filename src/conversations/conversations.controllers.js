@@ -9,7 +9,7 @@ const createConversations = async (data) => {
   const newConversation = await Conversations.create({
     id: uuid.v4(),
     title: data.title,
-    createdBy: data.createdBy,
+    userId: data.userId,
   });
   return newConversation;
 };
