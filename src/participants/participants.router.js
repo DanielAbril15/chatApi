@@ -4,6 +4,7 @@ const {
   getAllParticipants,
   createParticipant,
 } = require("./participants.services");
+require("../middlewares/auth.middleware")(passport);
 
 router
   .route("/")

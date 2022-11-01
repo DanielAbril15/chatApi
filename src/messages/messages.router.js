@@ -6,7 +6,7 @@ const {
   createMessage,
   deleteMessage,
 } = require("./messages.services");
-
+require("../middlewares/auth.middleware")(passport);
 router
   .route("/")
   .get(passport.authenticate("jwt", { session: false }), getAllMessages)

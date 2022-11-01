@@ -8,6 +8,7 @@ const {
   deleteConversation,
 } = require("./conversations.services");
 const messageRouter = require("../messages/messages.router");
+require("../middlewares/auth.middleware")(passport);
 
 router
   .route("/")
